@@ -10,7 +10,7 @@ Forked from `raspi-sonar` project to resolve some issues around wiringpi and oth
 
 ```
 apt-get install wiringpi
-npm install raspi-sonar
+npm install raspi-hc-sr04
 ```
 
 ## Example
@@ -35,7 +35,7 @@ sonar.read((duration) => {
 
 ## API
 
-raspi-sonar npm package exposes a single class called Sonar. The Sonar class has a single public method that takes the wiringPi pin number as an argument. If you installed [wiringPi](http://wiringpi.com) you can check the which pin number to use by typing the command `gpio readall`. The output for a Raspberry Pi ZeroW would look like the below diagram. Note the 'wPi' columns.
+raspi-hc-sr04 npm package exposes a single class called Sonar. The Sonar class has a single public method that takes the wiringPi pin number as an argument. If you installed [wiringPi](http://wiringpi.com) you can check the which pin number to use by typing the command `gpio readall`. The output for a Raspberry Pi ZeroW would look like the below diagram. Note the 'wPi' columns.
 
 <img src="https://github.com/smysnk/raspi-hc-sr04/blob/master/docs/gpio-readall.png" width="480" />
 
