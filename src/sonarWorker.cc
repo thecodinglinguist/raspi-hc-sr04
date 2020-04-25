@@ -15,45 +15,46 @@ using Nan::HandleScope;
 using Nan::New;
 using Nan::Null;
 
-//constructor
-SonarWorker::SonarWorker(Callback *callback, int SonarPin)
-        : AsyncWorker(callback), sonarPin(SonarPin) {
+// Constructor
+SonarWorker::SonarWorker(Callback *callback, int TriggerPin, int EchoPin)
+        : AsyncWorker(callback), triggerPin(TriggerPin), echoPin(EchoPin) {
 
     //init variables
     result = new char[80];            
 }
 
-//destructor
+// Destructor
 SonarWorker::~SonarWorker() {
     result = NULL;
  }
 
-//async method
+// Async method
 void SonarWorker::Execute() {
-    pinMode(sonarPin, OUTPUT);
-    digitalWrite(sonarPin, LOW);    //ensure state is LOW
-    
-    //set high for 10microseconds to trigger
-    digitalWrite(sonarPin, HIGH);
+    pinMode(triggerPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+
+    // printf("starting sonar method trigger=%d echo=%d\n", triggerPin, echoPin);
+    digitalWrite(triggerPin, LOW);    //ensure state is LOW
+
+    // Set high for 10microseconds to trigger
+    digitalWrite(triggerPin, HIGH);
     delayMicroseconds(10);
-    digitalWrite(sonarPin, LOW);
-    
-    pinMode(sonarPin, INPUT);
-    
-    //wait for high
+    digitalWrite(triggerPin, LOW);
+        
+    // Wait for high
     unsigned int start = 0;
     unsigned int end = 0;
     for(;;) {
-        int value = digitalRead(sonarPin);
+        int value = digitalRead(echoPin);
         if (value != 0) {
             start = micros();
             break;
         }
     }
 
-    //time taken for high to switch to low
+    // Time taken for high to switch to low
     for(;;) {
-        int value = digitalRead(sonarPin);
+        int value = digitalRead(echoPin);
         if (value != 1) {
             end = micros();
             break;
@@ -63,13 +64,13 @@ void SonarWorker::Execute() {
     sprintf(result, "%d", end - start);
 }
 
-//expected to be called once execute is completed
+// Expected to be called once execute is completed
 void SonarWorker::HandleOKCallback() {
     Isolate* isolate = Isolate::GetCurrent();
     
     const unsigned argc = 1;
     Local<Value> argv[argc] = { String::NewFromUtf8(isolate, result) };
     
-    //callback with the result
+    // Callback with the result
     callback->Call(isolate->GetCurrentContext()->Global(), 1, argv);
 }

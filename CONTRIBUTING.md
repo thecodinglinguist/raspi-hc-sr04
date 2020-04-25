@@ -3,7 +3,6 @@
 If you're interested in in contributing to this library, please free to do so. Contributing doesn't just have to be code changes, but it can also be design changes, documentation or suggestions to make this library better in some way.
 
 ## Build
-
 To build the project, execute `sudo npm run build`.
 
 ## Testing

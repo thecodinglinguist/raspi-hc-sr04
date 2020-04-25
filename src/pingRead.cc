@@ -6,7 +6,7 @@ using v8::FunctionTemplate;
 using namespace Nan;
 
 NAN_MODULE_INIT(InitAll) {
-    //Export RaspiSonar constructor via the sonarFactory constructor function
+    // Export RaspiSonar constructor via the sonarFactory constructor function
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(RaspiSonar::New);
     tpl->SetClassName(Nan::New("RaspiSonar").ToLocalChecked());
     tpl->InstanceTemplate()->SetInternalFieldCount(1);

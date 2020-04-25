@@ -9,11 +9,11 @@ using Nan::Callback;
 class SonarWorker : public AsyncWorker 
 {
 private:
-    int sonarPin, duration;
+    int triggerPin, echoPin, duration;
     char* result;
     
 public:
-    SonarWorker(Callback *callback, int SonarPin);
+    SonarWorker(Callback *callback, int EchoPin, int TriggerPin);
   
     ~SonarWorker();
 
