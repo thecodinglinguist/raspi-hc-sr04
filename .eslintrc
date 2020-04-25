@@ -8,9 +8,6 @@
         "node": true,
         "es6": true
     },
-    "ecmaFeatures": {
-        "modules": true
-    },
     "rules": {
         "eqeqeq": 0,
         "no-var": 2,

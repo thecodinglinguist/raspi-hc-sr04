@@ -1,6 +1,6 @@
 # raspi-hc-sr04
 
-RaspberryPi - Native Node.js extention to interact with an Ultrasonic Sensor.
+RaspberryPi - Native Node.js extension to interact with an Ultrasonic Sensor (HC-SR04).
 
 ## Fork
 
@@ -35,7 +35,7 @@ sonar.read((duration) => {
 
 ## API
 
-raspi-sonar npm package exposes a single class called Sonar. The Sonar class has a single public method that takes the wiringPi pin number as an argument. If you installed [wiringPi](http://wiringpi.com) (which will automatically be installed when you install the raspi-sonar package), you can check the which pin number to use by typing the command `gpio readall`. The output for a Raspberry Pi B+ would look like the below diagram. Note the 'wPi' columns.
+raspi-sonar npm package exposes a single class called Sonar. The Sonar class has a single public method that takes the wiringPi pin number as an argument. If you installed [wiringPi](http://wiringpi.com) you can check the which pin number to use by typing the command `gpio readall`. The output for a Raspberry Pi ZeroW would look like the below diagram. Note the 'wPi' columns.
 
 <img src="https://github.com/smysnk/raspi-hc-sr04/blob/master/docs/gpio-readall.png" width="480" />
 

@@ -1,6 +1,6 @@
 {
   "name": "raspi-hc-sr04",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "description": "Native Node Addon to read Ultrasonic sensors using a RaspberryPi",
   "keywords": [
     "raspberrypi",
@@ -19,13 +19,13 @@
     "del": "^2.2.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "gulp-eslint": "^2.0.0",
+    "gulp-eslint": "^6.0.0",
     "gulp-sourcemaps": "^1.6.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node-gyp rebuild",
-    "install": "npm install --ignore-scripts"
+    "install-osx": "npm install --ignore-scripts"
   },
   "repository": {
     "type": "git",
