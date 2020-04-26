@@ -1,8 +1,7 @@
-import { Peripheral } from 'raspi-peripheral';
 import addon from '../build/Release/raspiSonarAddon';
 
 // Sonar class provides a read method to interact with an ultrasonic sensor
-export class Sonar {
+export default class Sonar {
   constructor(opts) {
     this.opts = Object.assign({}, {
       callWiringPiSetup: true

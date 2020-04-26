@@ -1,5 +1,5 @@
 IP?=192.168.0.137
-ROOT?=autowater/lib/raspi-sonar
+ROOT?=raspi-hc-sr04
 SHELL=/bin/bash -eo pipefail
 
 sync:
@@ -10,12 +10,7 @@ install:
 		cd ${ROOT}; \
 			npm install"
 
-buildr:
+build:
 	ssh pi@${IP} " \
 		 cd ${ROOT}; \
 		 npm run build"
-
-gulp:
-	ssh pi@${IP} " \
-		 cd ${ROOT}; \
-		 ./node_modules/gulp/bin/gulp.js"
