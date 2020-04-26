@@ -25,10 +25,10 @@ Note that GPIO pins are rated at 3.3v. An ultrasonic sensor like the HC-SR04 out
 
 ```javascript
 import Sonar from 'raspi-hc-sr04';
-let sonar = new Sonar({ triggerPin: 2, echoPin: 3 });
+let sonar = new Sonar({ triggerPin: 4, echoPin: 31 });
 
 sonar.read((duration) => {
-  let distance = 343000.0 * duration / 1000000 * .5;
+  let distance = 343.0 * duration / 10000 * .5;
   console.log(`duration: ${ duration } distance: ${ distance }cm`);
 });
 ```

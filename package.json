@@ -1,6 +1,6 @@
 {
   "name": "raspi-hc-sr04",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Native Node.js extension to interact with an Ultrasonic Sensor (HC-SR04)",
   "keywords": [
     "raspberrypi",
