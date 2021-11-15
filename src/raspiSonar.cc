@@ -30,7 +30,8 @@ public:
 
   static NAN_METHOD(New) { 
     if (info.IsConstructCall()) {
-      Local<v8::Object> parameterObject = info[0]->ToObject();
+      v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
+      Local<v8::Object> parameterObject = info[0]->ToObject(context).ToLocalChecked();//MaybeLocal<Object> v8::Value::ToObject(Local<Context> info[0]);
       Local<v8::Value> triggerPinValue = parameterObject->Get(Nan::New<v8::String>("triggerPin").ToLocalChecked());
       Local<v8::Value> echoPinValue = parameterObject->Get(Nan::New<v8::String>("echoPin").ToLocalChecked());
       Local<v8::Value> skipCallToSetup = parameterObject->Get(Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
