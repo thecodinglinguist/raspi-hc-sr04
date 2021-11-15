@@ -33,7 +33,7 @@ public:
       v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
       Local<v8::Object> parameterObject = info[0]->ToObject(context).ToLocalChecked();
    
-      Local<v8::Value> triggerPinValue = Nan::To<v8::String>(parameterObject->Get(context, Nan::New<v8::String>("triggerPin").ToLocalChecked()));
+      Local<v8::Value> triggerPinValue = Nan::MaybeLocal<v8::Value> Nan::Get(v8::Local<v8::Object> parameterObject, v8::Local<v8::Value> "triggerPin"));
       // Local<v8::Value> triggerPinValue = parameterObject->Get(Nan::New<v8::String>("triggerPin").ToLocalChecked());
       Local<v8::Value> echoPinValue = parameterObject->Get(Nan::New<v8::String>("echoPin").ToLocalChecked());
       Local<v8::Value> skipCallToSetup = parameterObject->Get(Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
