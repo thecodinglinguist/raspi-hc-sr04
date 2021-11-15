@@ -37,9 +37,9 @@ public:
       Nan::MaybeLocal<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked()));
       Nan::MaybeLocal<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
 
-      int triggerPin = To<uint32_t>(triggerPinValue.FromMaybe()).FromJust();
-      int echoPin = To<uint32_t>(echoPinValue.FromMaybe()).FromJust();
-      bool callWiringPiSetup = To<bool>(skipCallToSetup.FromMaybe()).FromMaybe(true);
+      int triggerPin = To<uint32_t>(triggerPinValue.ToLocal()).FromJust();
+      int echoPin = To<uint32_t>(echoPinValue.ToLocal()).FromJust();
+      bool callWiringPiSetup = To<bool>(skipCallToSetup.ToLocal()).FromMaybe(true);
 
       RaspiSonar *obj = new RaspiSonar(triggerPin, echoPin, callWiringPiSetup);
 
