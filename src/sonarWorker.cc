@@ -14,7 +14,6 @@ using Nan::Callback;
 using Nan::HandleScope;
 using Nan::New;
 using Nan::Null;
-int [] argv;
 
 // Constructor
 SonarWorker::SonarWorker(Callback *callback, int TriggerPin, int EchoPin)
@@ -67,11 +66,12 @@ void SonarWorker::Execute() {
 
 // Expected to be called once execute is completed
 void SonarWorker::HandleOKCallback() {
-    Isolate* isolate = Isolate::GetCurrent();
+    v8::Isolate* isolate = Isolate::GetCurrent();
     
     const unsigned argc = 1;
-    Local<Value> argv[argc] = { String::NewFromUtf8(isolate, result) };
-    
+    v8::String::Utf8Value str(isolate, result);
+    Local<Value> argv[argc] = cppStr(*str)
+
     // Callback with the result
     callback->Call(isolate->GetCurrentContext()->Global(), 1, argv);
 }
