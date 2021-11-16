@@ -27,7 +27,6 @@ private:
 public:
   int TriggerPin;
   int EchoPin;
-https://stackoverflow.com/questions/64961662/v8-updating-code-using-deprecated-v8localv8value-v8objectgetv8local
   static NAN_METHOD(New) { 
     v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
     if (info.IsConstructCall()) {
