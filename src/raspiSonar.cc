@@ -15,6 +15,7 @@ using Nan::HandleScope;
 using Nan::New;
 using Nan::Null;
 using Nan::To;
+using Nan::TryCatch;
 
 using namespace Nan;
 
