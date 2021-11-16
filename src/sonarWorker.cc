@@ -66,12 +66,17 @@ void SonarWorker::Execute() {
 
 // Expected to be called once execute is completed
 void SonarWorker::HandleOKCallback() {
-    v8::Isolate* isolate = Isolate::GetCurrent();
+    Isolate* isolate = Isolate::GetCurrent();
     
     const unsigned argc = 1;
-    v8::String::Utf8Value str(isolate, result);
-    Local<Value> argv[argc] = cppStr(*str)
+    v8::String v = { String::NewFromUtf8(isolate, result) };
+    Local<Value> argv[argc] = v;
 
+    // from v8 to cpp
+    v8::Isolate* isolate = args.GetIsolate();
+    v8::String::Utf8Value str(isolate, args[0]);
+    std::string cppStr(*str);
+    
     // Callback with the result
     callback->Call(isolate->GetCurrentContext()->Global(), 1, argv);
 }
