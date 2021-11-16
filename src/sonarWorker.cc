@@ -69,7 +69,8 @@ void SonarWorker::HandleOKCallback() {
     Isolate* isolate = Isolate::GetCurrent();
     
     const unsigned argc = 1;
-    Local<Value> argv[argc] = { String::NewFromUtf8(isolate.ToLocalChecked(), result) };
+    const unsigned val = { String::NewFromUtf8(isolate, result) }; 
+    Local<Value> argv[argc] = val;
     
     // Callback with the result
     callback->Call(isolate->GetCurrentContext()->Global(), 1, argv);
