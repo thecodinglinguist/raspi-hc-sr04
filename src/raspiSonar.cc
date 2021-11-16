@@ -31,13 +31,13 @@ public:
     v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
     if (info.IsConstructCall()) {
       v8::Local<v8::Object> parameterObject = info[0]->ToObject(context).ToLocalChecked();
-      Nan::MaybeLocal<v8::Value> triggerPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("triggerPin").ToLocalChecked());
-      Nan::MaybeLocal<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked());
-      Nan::MaybeLocal<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
+      v8::MaybeLocal<v8::Value> triggerPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("triggerPin").ToLocalChecked());
+      v8::MaybeLocal<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked());
+      v8::MaybeLocal<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
 
-      int triggerPin = To<uint32_t>(triggerPinValue).FromMaybe();
+      int triggerPin = To<uint32_t>(triggerPinValue.ToLocal()).FromMaybe();
       int echoPin = To<uint32_t>(echoPinValue.ToLocal()).FromMaybe();
-      bool callWiringPiSetup = To<bool>(skipCallToSetup.ToLocal()).FromMaybe(true);
+      bool callWiringPiSetup = To<bool>(skipCallToSetup.FromMaybe()).FromMaybe(true);
 
       RaspiSonar *obj = new RaspiSonar(triggerPin, echoPin, callWiringPiSetup);
 
