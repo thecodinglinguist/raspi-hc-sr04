@@ -27,13 +27,13 @@ private:
 public:
   int TriggerPin;
   int EchoPin;
-
   static NAN_METHOD(New) { 
+    v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
     if (info.IsConstructCall()) {
-      Local<v8::Object> parameterObject = info[0]->ToObject();
-      Local<v8::Value> triggerPinValue = parameterObject->Get(Nan::New<v8::String>("triggerPin").ToLocalChecked());
-      Local<v8::Value> echoPinValue = parameterObject->Get(Nan::New<v8::String>("echoPin").ToLocalChecked());
-      Local<v8::Value> skipCallToSetup = parameterObject->Get(Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
+      v8::Local<v8::Object> parameterObject = info[0]->ToObject(context).ToLocalChecked();
+      v8::Local<v8::Value> triggerPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("triggerPin").ToLocalChecked()).ToLocalChecked();
+      v8::Local<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked()).ToLocalChecked();
+      v8::Local<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked()).ToLocalChecked();
 
       int triggerPin = To<uint32_t>(triggerPinValue).FromJust();
       int echoPin = To<uint32_t>(echoPinValue).FromJust();
@@ -47,7 +47,6 @@ public:
       const int argc = 1;
       v8::Local<v8::Value> argv[argc] = {info[0]};
       v8::Local<v8::Function> cons = Nan::New(constructor());
-      Local<Context> context = info.GetIsolate()->GetCurrentContext();
       info.GetReturnValue().Set(cons->NewInstance(context, argc, argv).ToLocalChecked());
     }
   }
