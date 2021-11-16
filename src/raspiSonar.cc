@@ -31,17 +31,17 @@ public:
     v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
     if (info.IsConstructCall()) {
       v8::Local<v8::Object> parameterObject = info[0]->ToObject(context).ToLocalChecked();
-      v8::MaybeLocal<v8::Value> triggerPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("triggerPin").ToLocalChecked());
+      v8::Local<v8::Value> triggerPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("triggerPin").ToLocalChecked()).toLocal(&triggerPinValue);
       v8::MaybeLocal<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked());
       v8::MaybeLocal<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
-      v8::Local<v8::Value> tp;
-      triggerPinValue.ToLocal(&tp);
+      //v8::Local<v8::Value> tp;
+      //triggerPinValue.ToLocal(&tp);
       v8::Local<v8::Value> ep;
       echoPinValue.ToLocal(&ep);
       v8::Local<v8::Value> cw;
       skipCallToSetup.ToLocal(&cw);
       
-      int triggerPin = To<uint32_t>(tp).FromJust();
+      int triggerPin = To<uint32_t>(triggerPinValue).FromJust();
       int echoPin = To<uint32_t>(ep).FromJust();
       bool callWiringPiSetup = To<bool>(cw).FromMaybe(true);
 
