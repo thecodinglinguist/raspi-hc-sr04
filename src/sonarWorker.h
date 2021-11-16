@@ -5,7 +5,7 @@
 
 using Nan::AsyncWorker;
 using Nan::Callback;
-extern int [] argv;
+
 class SonarWorker : public AsyncWorker 
 {
 private:

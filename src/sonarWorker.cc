@@ -14,6 +14,7 @@ using Nan::Callback;
 using Nan::HandleScope;
 using Nan::New;
 using Nan::Null;
+int [] argv;
 
 // Constructor
 SonarWorker::SonarWorker(Callback *callback, int TriggerPin, int EchoPin)
