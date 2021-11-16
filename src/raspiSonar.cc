@@ -34,7 +34,7 @@ public:
       v8::MaybeLocal<v8::Value> triggerPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("triggerPin").ToLocalChecked());
       v8::MaybeLocal<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked());
       v8::MaybeLocal<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
-
+      Nan::TryCatch try_catch;
       v8::Local<v8::Value> tp;
       if (!triggerPinValue.ToLocal(&tp)) {
       return try_catch.ReThrow();
