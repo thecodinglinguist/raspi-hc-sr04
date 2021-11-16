@@ -35,11 +35,11 @@ public:
       v8::MaybeLocal<v8::Value> echoPinValue = Nan::Get(parameterObject, Nan::New<v8::String>("echoPin").ToLocalChecked());
       v8::MaybeLocal<v8::Value> skipCallToSetup = Nan::Get(parameterObject, Nan::New<v8::String>("callWiringPiSetup").ToLocalChecked());
       v8::Local<v8::Value> tp;
-      triggerPinValue.ToLocal(&tp)
+      triggerPinValue.ToLocal(&tp);
       v8::Local<v8::Value> ep;
-      echoPin.ToLocal(&ep);
+      echoPinValue.ToLocal(&ep);
       v8::Local<v8::Value> cw;
-      callWiringPiSetup.ToLocal(&cw);
+      skipCallToSetup.ToLocal(&cw);
       
       int triggerPin = To<uint32_t>(tp).FromJust();
       int echoPin = To<uint32_t>(ep).FromJust();
